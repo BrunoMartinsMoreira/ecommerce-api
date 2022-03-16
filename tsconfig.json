@@ -13,7 +13,9 @@
     "noImplicitAny": true,                               
     "skipLibCheck": true,
     "experimentalDecorators": true,        
-    "emitDecoratorMetadata": true,                                 
+    "emitDecoratorMetadata": true, 
+    "moduleResolution": "node", 
+    "baseUrl": "."                                
   },
   "exclude": [
     "node_modules",
