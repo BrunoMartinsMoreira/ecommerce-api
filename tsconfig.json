@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-    
-    "target": "es2016",                                  
-    "lib": ["es6"],                                     
-    "rootDir": "src",                                    
-    "resolveJsonModule": true,                           
-    "allowJs": true,                                     
-    "outDir": "build",                                   
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,           
-    "strict": true,                                      
-    "noImplicitAny": true,                               
+
+    "target": "es2016",
+    "lib": ["es6"],
+    "rootDir": "src",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "outDir": "build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true,        
-    "emitDecoratorMetadata": true, 
-    "moduleResolution": "node", 
-    "baseUrl": "."                                
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "baseUrl": "."
   },
   "exclude": [
     "node_modules",
