@@ -5,15 +5,18 @@
         "node": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base", "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint", "prettier"
     ],
     "rules": {
+      "prettier/prettier": "error",
+      "no-console":"off"
     }
 }
