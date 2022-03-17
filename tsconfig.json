@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
-    "baseUrl": "."
+    "baseUrl": "./"
   },
   "paths": {
     "@config/*": ["src/config/*"],
