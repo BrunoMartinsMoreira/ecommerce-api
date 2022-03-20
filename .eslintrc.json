@@ -22,6 +22,7 @@
       "import/prefer-default-export":"off",
       "import/no-unresolved":"off",
       "import/extensions":"off",
-      "lines-between-class-members":"off"
+      "lines-between-class-members":"off",
+      "class-methods-use-this":"off"
     }
 }
