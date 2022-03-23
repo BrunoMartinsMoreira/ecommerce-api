@@ -1,5 +1,6 @@
 import 'reflect-metadata';
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
 import { AppError } from '@shared/errors/AppError';
 import { routes } from './routes';
@@ -13,7 +14,7 @@ app.use(express.json());
 app.use(routes);
 
 // middleware para capturar erros
-app.use((error: Error, req: Request, res: Response) => {
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: 'error',

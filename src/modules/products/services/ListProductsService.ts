@@ -9,7 +9,7 @@ export class ListProductsService {
 
     const products = await productsRepository.find();
 
-    if (products.length === 0) {
+    if (!products.length) {
       throw new AppError('No registered products found');
     }
 
