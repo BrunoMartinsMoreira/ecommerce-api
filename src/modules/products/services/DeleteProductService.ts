@@ -15,6 +15,6 @@ export class DeleteProductsService {
       throw new AppError('Product not found');
     }
 
-    await productsRepository.softRemove(product);
+    await productsRepository.remove(product);
   }
 }
