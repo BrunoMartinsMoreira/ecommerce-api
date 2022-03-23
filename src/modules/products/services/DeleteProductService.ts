@@ -6,7 +6,7 @@ interface Irequest {
   id: string;
 }
 
-export class ShowProductsService {
+export class DeleteProductsService {
   public async execute({ id }: Irequest): Promise<void> {
     const productsRepository = getCustomRepository(ProductsRepository);
     const product = await productsRepository.findOne(id);
