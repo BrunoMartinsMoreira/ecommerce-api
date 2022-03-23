@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import { productsRouter } from '@modules/products/routes/products.routes';
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-  res.json({ msg: 'Router is running' });
-});
+routes.use('/products', productsRouter);
 
 export { routes };
