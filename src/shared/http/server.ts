@@ -1,8 +1,9 @@
 import 'reflect-metadata';
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import { AppError } from '@shared/errors/AppError';
+import { errors } from 'celebrate';
 import { routes } from './routes';
 import '@shared/typeorm';
 
@@ -13,8 +14,10 @@ app.use(express.json());
 
 app.use(routes);
 
+app.use(errors()); // lida com os erros capturados pelo celebrate
+
 // middleware para capturar erros
-app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((error: Error, req: Request, res: Response) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       status: 'error',

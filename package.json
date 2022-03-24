@@ -5,6 +5,7 @@
   "author": "Bruno Martins Moreira <bruno_moreira.19@outlook.com>",
   "license": "MIT",
   "dependencies": {
+    "celebrate": "^15.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/joi": "^17.2.3",
     "@types/node": "^17.0.21",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
