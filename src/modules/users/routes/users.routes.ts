@@ -3,9 +3,9 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { UsersController } from '../controllers/UsersController';
 
 const usersRouter = Router();
-const controller = new UsersController();
+const userController = new UsersController();
 
-usersRouter.get('/', controller.index);
+usersRouter.get('/', userController.index);
 
 usersRouter.post(
   '/',
@@ -16,6 +16,6 @@ usersRouter.post(
       password: Joi.string().required(),
     },
   }),
-  controller.create,
+  userController.create,
 );
 export { usersRouter };
