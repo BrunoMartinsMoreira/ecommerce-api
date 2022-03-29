@@ -27,6 +27,7 @@ export class CreateUserService {
       email,
       password: passwordHash,
     });
+
     await usersRepository.save(user);
 
     // configurar jwt e retornar apenas o token
