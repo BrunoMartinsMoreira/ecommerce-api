@@ -3,11 +3,16 @@ import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 
-export function isAuthenticated(
+interface ITokenPayload {
+  iat: number;
+  exp: number;
+  sub: string;
+}
+export async function isAuthenticated(
   req: Request,
   res: Response,
   next: NextFunction,
-): void {
+): Promise<void> {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -19,6 +24,11 @@ export function isAuthenticated(
 
   try {
     const verifiedToken = verify(token, authConfig.jwt.secret);
+    const { sub } = verifiedToken as ITokenPayload;
+
+    req.user = {
+      id: sub,
+    };
 
     return next();
   } catch (error) {
