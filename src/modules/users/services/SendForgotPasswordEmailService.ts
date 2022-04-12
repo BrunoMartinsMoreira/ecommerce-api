@@ -1,3 +1,4 @@
+// serviço que envia o email para o usuário
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { UsersRepository } from '../typeorm/repositories/UsersRepository';
@@ -7,7 +8,7 @@ interface IRequest {
   email: string;
 }
 
-export class SendForgotPasswordEmailSErvice {
+export class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepository);
     const userTokenRepository = getCustomRepository(UserTokensRepository);
