@@ -5,16 +5,16 @@ interface ITemplateVars {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVars;
 }
 
 export class HandlebarsMailTemplate {
   public async parser({
-    template,
+    file,
     variables,
   }: IParseMailTemplate): Promise<string> {
-    const parseTemplate = Handlebars.compile(template);
+    const parseTemplate = Handlebars.compile(file);
     return parseTemplate(variables);
   }
 }
