@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import { Customer } from '../typeorm/entities/Customer';
 import { CustomersRepository } from '../typeorm/repositories/CustomersRepository';
 
-export class ShowUserService {
+export class ShowCustomerService {
   public async execute(id: string): Promise<Customer> {
     const customersRepository = getCustomRepository(CustomersRepository);
     const customer = await customersRepository.findById(id);

@@ -46,6 +46,8 @@ export class ProductsController {
     const deleteProduct = new DeleteProductsService();
     await deleteProduct.execute({ id });
 
-    return res.json([]);
+    return res.json({
+      message: 'Product deleted with success',
+    });
   }
 }
