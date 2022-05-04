@@ -1,4 +1,3 @@
-import { Customer } from '@modules/customers/typeorm/entities/Customer';
 import { CustomersRepository } from '@modules/customers/typeorm/repositories/CustomersRepository';
 import { ProductsRepository } from '@modules/products/typeorm/repositories/ProductsRepository';
 import { AppError } from '@shared/errors/AppError';
