@@ -20,10 +20,10 @@ export class Product {
   name: String;
 
   @Column('decimal')
-  price: Number;
+  price: number;
 
   @Column('int')
-  quantity: Number;
+  quantity: number;
 
   @CreateDateColumn()
   created_at: Date;
