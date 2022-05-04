@@ -21,7 +21,7 @@ export class CreateOrderService {
     const customersRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductsRepository);
 
-    const customerExists = customersRepository.findById(customer_id);
+    const customerExists = await customersRepository.findById(customer_id);
 
     if (!customerExists) {
       throw new AppError('Customer not exists');

@@ -1,13 +1,6 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  TableColumn,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class AddProductsIdToOrdersProducts1651194648999
-  implements MigrationInterface
-{
+export class AddProductsIdToOrdersProducts1651194648999 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
       'orders_products',
@@ -31,10 +24,7 @@ export class AddProductsIdToOrdersProducts1651194648999
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     // nome da tabela, nome da foreign key
-    await queryRunner.dropForeignKey(
-      'orders_products',
-      'OrdersProductsProduct',
-    );
+    await queryRunner.dropForeignKey('orders_products', 'OrdersProductsProduct');
     // nome da tabela, campo a ser deletado
     await queryRunner.dropColumn('orders_products', 'product_id');
   }
