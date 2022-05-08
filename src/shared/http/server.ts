@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
@@ -9,8 +9,6 @@ import uploadConfig from '@config/upload';
 import { errors } from 'celebrate';
 import { routes } from './routes';
 import '@shared/typeorm';
-
-dotenv.config();
 
 const app = express();
 
