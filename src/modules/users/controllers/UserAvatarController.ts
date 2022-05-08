@@ -1,3 +1,4 @@
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { UpadateUserAvatarService } from '../services/UpdateUserAvatarService';
 
@@ -10,6 +11,6 @@ export class UserAvatarController {
       avatarFileName: req.file?.filename as string, // coloquei isso aqui pq tava dando erro, funcionou nao sei pq,
     });
 
-    return res.json(user);
+    return res.json(classToClass(user));
   }
 }
