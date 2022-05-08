@@ -6,9 +6,9 @@ export class OrdersController {
   public async show(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
-    const showOrder = new ShowOrderService();
+    const showOrderService = new ShowOrderService();
 
-    const order = await showOrder.execute({ id });
+    const order = await showOrderService.execute({ id });
 
     return res.json(order);
   }
