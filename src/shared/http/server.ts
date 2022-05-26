@@ -26,6 +26,7 @@ app.use(routes);
 app.use(errors()); // lida com os erros capturados pelo celebrate
 
 // middleware para capturar erros
+// eslint-disable-next-line no-unused-vars
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
