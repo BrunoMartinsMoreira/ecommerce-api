@@ -8,7 +8,7 @@ import { AppError } from '@shared/errors/AppError';
 import uploadConfig from '@config/upload';
 import { errors } from 'celebrate';
 import { routes } from './routes';
-import '@shared/typeorm';
+import '@shared/infra/typeorm';
 import { rateLimiter } from './middlewares/rateLimiter';
 
 const app = express();

@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
 
-    "baseUrl": "./",
+    "baseUrl": "./src/shared/infra/http/server.ts",
     "paths": {
       "@config/*": [
         "src/config/*"
