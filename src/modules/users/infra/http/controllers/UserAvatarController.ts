@@ -1,6 +1,6 @@
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
-import { UpadateUserAvatarService } from '../services/UpdateUserAvatarService';
+import { UpadateUserAvatarService } from '../../../services/UpdateUserAvatarService';
 
 export class UserAvatarController {
   public async update(req: Request, res: Response): Promise<Response> {

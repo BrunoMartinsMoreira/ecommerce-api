@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { CreateOrderService } from '../services/CreateOrderService';
-import { ListOrdersService } from '../services/ListOrdersService';
-import { ShowOrderService } from '../services/ShowOrderService';
+import { CreateOrderService } from '../../../services/CreateOrderService';
+import { ListOrdersService } from '../../../services/ListOrdersService';
+import { ShowOrderService } from '../../../services/ShowOrderService';
 
 export class OrdersController {
   public async index(req: Request, res: Response): Promise<Response> {

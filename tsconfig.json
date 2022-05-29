@@ -1,5 +1,4 @@
 {
-
   "compilerOptions": {
 
     "target": "es5",
@@ -12,7 +11,7 @@
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
 
-    "baseUrl": "./src/shared/infra/http/server.ts",
+    "baseUrl": "./",
     "paths": {
       "@config/*": [
         "src/config/*"

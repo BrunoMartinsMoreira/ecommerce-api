@@ -3,8 +3,8 @@ import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { EtherealMail } from '@config/mail/EtherealMail';
 import path from 'path';
-import { UsersRepository } from '../typeorm/repositories/UsersRepository';
-import { UserTokensRepository } from '../typeorm/repositories/UserTokensRepository';
+import { UsersRepository } from '../infra/typeorm/repositories/UsersRepository';
+import { UserTokensRepository } from '../infra/typeorm/repositories/UserTokensRepository';
 
 interface IRequest {
   email: string;

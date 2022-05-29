@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { classToClass } from 'class-transformer';
-import { CreateUserService } from '../services/CreateUserService';
-import { ListUserService } from '../services/ListUserService';
+import { CreateUserService } from '../../../services/CreateUserService';
+import { ListUserService } from '../../../services/ListUserService';
 
 export class UsersController {
   public async create(req: Request, res: Response): Promise<Response> {

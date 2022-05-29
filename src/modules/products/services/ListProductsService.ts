@@ -1,8 +1,8 @@
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { RedisCache } from '@shared/cache/RedisCache';
-import { Product } from '../typeorm/entities/Product';
-import { ProductsRepository } from '../typeorm/repositories/ProductsRepository';
+import { Product } from '../infra/typeorm/entities/Product';
+import { ProductsRepository } from '../infra/typeorm/repositories/ProductsRepository';
 
 export class ListProductsService {
   public async execute(): Promise<Product[]> {

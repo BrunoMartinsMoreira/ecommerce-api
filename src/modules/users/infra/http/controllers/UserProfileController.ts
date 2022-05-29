@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { classToClass } from 'class-transformer';
-import { ShowProfileService } from '../services/ShowProfileService';
-import { UpdateProfileService } from '../services/UpdateProfileService';
+import { ShowProfileService } from '../../../services/ShowProfileService';
+import { UpdateProfileService } from '../../../services/UpdateProfileService';
 
 export class UserProfileController {
   public async show(req: Request, res: Response) {

@@ -5,7 +5,7 @@ import uploadConfig from '@config/upload';
 import { UsersController } from '../controllers/UsersController';
 import { UserProfileController } from '../controllers/UserProfileController';
 import { UserAvatarController } from '../controllers/UserAvatarController';
-import { isAuthenticated } from '../../../shared/http/middlewares/isAuthenticated';
+import { isAuthenticated } from '../../../../../shared/infra/http/middlewares/isAuthenticated';
 
 const usersRouter = Router();
 const userController = new UsersController();
@@ -28,12 +28,7 @@ usersRouter.post(
   userController.create,
 );
 
-usersRouter.patch(
-  '/avatar',
-  isAuthenticated,
-  upload.single('avatar'),
-  avatarController.update,
-);
+usersRouter.patch('/avatar', isAuthenticated, upload.single('avatar'), avatarController.update);
 export { usersRouter };
 
 usersRouter.get('/profile', isAuthenticated, profileController.show);
@@ -47,12 +42,10 @@ usersRouter.put(
       email: Joi.string().email().required(),
       old_password: Joi.string(),
       password: Joi.string().optional(),
-      password_confirmation: Joi.string()
-        .valid(Joi.ref('password'))
-        .when('password', {
-          is: Joi.exist(),
-          then: Joi.required(),
-        }),
+      password_confirmation: Joi.string().valid(Joi.ref('password')).when('password', {
+        is: Joi.exist(),
+        then: Joi.required(),
+      }),
     },
   }),
   profileController.update,
