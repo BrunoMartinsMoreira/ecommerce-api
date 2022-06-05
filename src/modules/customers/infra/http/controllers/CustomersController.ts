@@ -1,48 +1,67 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { CreateCustomerService } from '../../../services/CreateCustomerService';
-import { DeleteCustomerService } from '../../../services/DeleteCustomerService';
-import { ListCustomersService } from '../../../services/ListCustomersService';
-import { ShowCustomerService } from '../../../services/ShowCustomerService';
-import { UpdateCustomerService } from '../../../services/UpdateCustomerService';
+import { CreateCustomerService } from '@modules/customers/services/CreateCustomerService';
+import { DeleteCustomerService } from '@modules/customers/services/DeleteCustomerService';
+import { ListCustomersService } from '@modules/customers/services/ListCustomersService';
+import { ShowCustomerService } from '@modules/customers/services/ShowCustomerService';
+import { UpdateCustomerService } from '@modules/customers/services/UpdateCustomerService';
 
-export class CustomersController {
-  public async create(req: Request, res: Response): Promise<Response> {
-    const { name, email } = req.body;
+export default class CustomersController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const page = request.query.page ? Number(request.query.page) : 1;
+    const limit = request.query.limit ? Number(request.query.limit) : 15;
 
-    const createCustomerService = container.resolve(CreateCustomerService);
+    const listCustomers = container.resolve(ListCustomersService);
+    const customers = await listCustomers.execute({ page, limit });
 
-    const customer = await createCustomerService.execute({ name, email });
-    return res.json(customer);
+    return response.json(customers);
   }
 
-  public async index(req: Request, res: Response): Promise<Response> {
-    const listCustomersService = new ListCustomersService();
-    const customers = await listCustomersService.execute();
-    return res.json(customers);
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const showCustomer = container.resolve(ShowCustomerService);
+
+    const customer = await showCustomer.execute({ id });
+
+    return response.json(customer);
   }
 
-  public async show(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const showCustomerService = new ShowCustomerService();
-    const customer = await showCustomerService.execute(id);
-    return res.json(customer);
-  }
+  public async create(request: Request, response: Response): Promise<Response> {
+    const { name, email } = request.body;
 
-  public async update(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const { name, email } = req.body;
-    const updateCustomerService = new UpdateCustomerService();
-    const customer = await updateCustomerService.execute({ id, name, email });
-    return res.json(customer);
-  }
+    const createCustomer = container.resolve(CreateCustomerService);
 
-  public async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const deleteCustomerService = new DeleteCustomerService();
-    await deleteCustomerService.execute(id);
-    return res.json({
-      message: 'Customer deleted with success',
+    const customer = await createCustomer.execute({
+      name,
+      email,
     });
+
+    return response.json(customer);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { name, email } = request.body;
+    const { id } = request.params;
+
+    const updateCustomer = container.resolve(UpdateCustomerService);
+
+    const customer = await updateCustomer.execute({
+      id,
+      name,
+      email,
+    });
+
+    return response.json(customer);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const deleteCustomer = container.resolve(DeleteCustomerService);
+
+    await deleteCustomer.execute({ id });
+
+    return response.json([]);
   }
 }

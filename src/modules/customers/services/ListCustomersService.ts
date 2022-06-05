@@ -1,30 +1,31 @@
-import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { Customer } from '../infra/typeorm/entities/Customer';
-import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty-function */
+/* eslint-disable no-useless-constructor */
+import { inject, injectable } from 'tsyringe';
+import { ICustomersRepository } from '../domain/repositories/ICustomersRepository';
+import { ICustomerPaginate } from '../domain/models/ICustomerPaginate';
 
-// ver nas docs do typeorm-pagination
-interface IPagination {
-  from: number;
-  to: number;
-  per_page: number;
-  total: number;
-  current_page: number;
-  prev_page: number | null;
-  next_page: number | null;
-  data: Customer[];
+interface SearchParams {
+  page: number;
+  limit: number;
 }
 
+@injectable()
 export class ListCustomersService {
-  public async execute(): Promise<IPagination> {
-    const customersRepository = getCustomRepository(CustomersRepository);
+  constructor(
+    @inject('CustomersRepository')
+    private customersRepository: ICustomersRepository,
+  ) {}
 
-    const customers = await customersRepository.createQueryBuilder().paginate();
+  public async execute({ page, limit }: SearchParams): Promise<ICustomerPaginate> {
+    const take = limit;
+    const skip = (Number(page) - 1) * take;
+    const customers = await this.customersRepository.findAll({
+      page,
+      skip,
+      take,
+    });
 
-    if (!customers) {
-      throw new AppError('Customer not found');
-    }
-
-    return customers as IPagination;
+    return customers;
   }
 }
