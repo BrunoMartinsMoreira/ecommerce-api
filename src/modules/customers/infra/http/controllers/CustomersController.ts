@@ -4,11 +4,15 @@ import { DeleteCustomerService } from '../../../services/DeleteCustomerService';
 import { ListCustomersService } from '../../../services/ListCustomersService';
 import { ShowCustomerService } from '../../../services/ShowCustomerService';
 import { UpdateCustomerService } from '../../../services/UpdateCustomerService';
+import { CustomersRepository } from '../../typeorm/repositories/CustomersRepository';
 
 export class CustomersController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { name, email } = req.body;
-    const createCustomerService = new CreateCustomerService();
+
+    const customersRepository = new CustomersRepository();
+    const createCustomerService = new CreateCustomerService(customersRepository);
+
     const customer = await createCustomerService.execute({ name, email });
     return res.json(customer);
   }
