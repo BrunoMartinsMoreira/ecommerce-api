@@ -1,17 +1,16 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { CreateCustomerService } from '../../../services/CreateCustomerService';
 import { DeleteCustomerService } from '../../../services/DeleteCustomerService';
 import { ListCustomersService } from '../../../services/ListCustomersService';
 import { ShowCustomerService } from '../../../services/ShowCustomerService';
 import { UpdateCustomerService } from '../../../services/UpdateCustomerService';
-import { CustomersRepository } from '../../typeorm/repositories/CustomersRepository';
 
 export class CustomersController {
   public async create(req: Request, res: Response): Promise<Response> {
     const { name, email } = req.body;
 
-    const customersRepository = new CustomersRepository();
-    const createCustomerService = new CreateCustomerService(customersRepository);
+    const createCustomerService = container.resolve(CreateCustomerService);
 
     const customer = await createCustomerService.execute({ name, email });
     return res.json(customer);
